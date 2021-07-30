@@ -58,11 +58,20 @@ public class TestNeoload{
         boolean PasswordText = driver.getPageSource().contains("Password");
         Assert.assertTrue(PasswordText);
         System.out.println("[TEXT PASSWORD] - Assertion passed!");
-
         driver.stopTransaction();
 
-
-        //Login Page
+        //Fill UserFormFields
+        driver.startTransaction("DataUserForm");
+        driver.findElement(By.name("username")).clear();
+        driver.findElement(By.name("username")).sendKeys("ricardo2021");
+        driver.findElement(By.name("password")).clear();
+        driver.findElement(By.name("password")).sendKeys("1234");
+        driver.findElement(By.name("repeatedPassword")).clear();
+        driver.findElement(By.name("repeatedPassword")).sendKeys("1234");
+        boolean UserInformationText = driver.getPageSource().contains("User Information");
+        Assert.assertTrue(UserInformationText);
+        System.out.println("[TEXT User Information] - Assertion passed!");
+        driver.stopTransaction();
 
         //Select Category
 
